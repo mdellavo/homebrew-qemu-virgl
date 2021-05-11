@@ -1,7 +1,9 @@
 class Spice < Formula
   homepage "https://www.spice-space.org/"
+  desc "The SPICE project aims to provide a complete open source solution for remote access to virtual machines in a seamless way so you can play videos, record audio, share usb devices and share folders without complications."
   url "https://gitlab.freedesktop.org/spice/spice.git"
   version "master"
+  license "GPL-2.0-only"
 
   depends_on "autoconf" => :build
   depends_on "autoconf-archive" => :build
@@ -39,7 +41,12 @@ class Spice < Formula
   def install
     system "./autogen.sh"
     system "./configure", "--prefix=#{prefix}"
-    system "make", "-j1", "install"
+    system "make", "-j1", "install"  # FIXME there seems to be some race in the build if -j is too high
+  end
+
+  test do
+
+
   end
 
 end
