@@ -30,6 +30,7 @@ class QemuVirgl < Formula
   depends_on "pixman"
   depends_on "snappy"
   depends_on "vde"
+  depends_on "spice"
 
   # 820KB floppy disk image file of FreeDOS 1.2, used to test QEMU
   resource "test-image" do
@@ -60,13 +61,16 @@ class QemuVirgl < Formula
       --enable-curses
       --enable-libssh
       --enable-vde
+      --enable-spice
       --extra-cflags=-DNCURSES_WIDECHAR=1
       --extra-cflags=-I#{Formula["libangle"].opt_prefix}/include
       --extra-cflags=-I#{Formula["libepoxy-angle"].opt_prefix}/include
       --extra-cflags=-I#{Formula["virglrenderer"].opt_prefix}/include
+      --extra-cflags=-I#{Formula["spice"].opt_prefix}/include
       --extra-ldflags=-L#{Formula["libangle"].opt_prefix}/lib
       --extra-ldflags=-L#{Formula["libepoxy-angle"].opt_prefix}/lib
       --extra-ldflags=-L#{Formula["virglrenderer"].opt_prefix}/lib
+      --extra-ldflags=-L#{Formula["spice"].opt_prefix}/lib
       --disable-sdl
       --disable-gtk
     ]
